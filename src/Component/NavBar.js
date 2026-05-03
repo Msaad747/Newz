@@ -6,7 +6,7 @@ export default class NavBar extends Component {
     return (
       <div>
         <nav
-          className={`navbar navbar-expand-lg ${isDark ? "navbar-dark bg-dark" : "navbar-light bg-light"}`}
+          className={`navbar navbar-expand-lg ${isDark ? "navbar-dark bg-dark" : "navbar-light bg-light"} fixed-top`}
         >
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
@@ -73,7 +73,7 @@ export default class NavBar extends Component {
                     </li>
                     <li>
                       <a className="dropdown-item" href="/">
-                        {""}
+                        {"Top Headlines"}
                       </a>
                     </li>
                   </ul>

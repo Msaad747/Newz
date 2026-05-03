@@ -2,477 +2,117 @@ import React, { Component } from "react";
 import NewsItems from "./NewsItems";
 
 export class News extends Component {
-  constructor(){
-    const results= [
-        {
-          article_id: "a43864eaeba9e35df4df78994ca670dc",
-          link: "https://www.geo.tv/latest/662379-david-allan-coe-dies-the-ride-country-star-was-86",
-          title: "David Allan Coe dies: ‘The Ride' country star was 86",
-          description:
-            "David Allan Coe dies: ‘The Ride’ country star was 86 David Allan Coe, one of country music's most defiant and complex figures, has died at the age of 86. Rolling Stone reported the death. Born in Akron, Ohio in 1939, Coe made his way to Nashville in the 1960s as a...",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: null,
-          creator: ["geo news digital desk"],
-          language: "english",
-          country: ["pakistan"],
-          category: ["top", "entertainment"],
-          datatype: "news",
-          pubDate: "2026-05-01 04:38:00",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 04:39:28",
-          image_url:
-            "https://www.geo.tv/assets/uploads/2026-05-01/662379_043848_updates.jpg",
-          video_url: null,
-          source_id: "geo",
-          source_name: "Geo Tv",
-          source_priority: 114092,
-          source_url: "https://www.geo.tv",
-          source_icon: "https://n.bytvi.com/geo.png",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: false,
-        },
-        {
-          article_id: "c62a898c577965cf98529153a1dfc516",
-          link: "https://reliefweb.int/report/burkina-faso/burkina-faso-apercu-du-financement-du-plan-de-reponse-humanitaire-hrp-2026-30-avril-2026-enfr",
-          title:
-            "Burkina Faso: 2026 Humanitarian Response Plan (HRP) Funding Overview (30 April 2026) [EN/FR]",
-          description:
-            "Country: Burkina Faso Source: UN Office for the Coordination of Humanitarian Affairs Please refer to the attached Infographic.",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: ["infographic", "coordination"],
-          creator: null,
-          language: "english",
-          country: [
-            "nigeria",
-            "syria",
-            "sudan",
-            "afghanistan",
-            "pakistan",
-            "ethiopia",
-            "haiti",
-            "yemen",
-            "myanmar",
-            "somalia",
-            "ukraine",
-          ],
-          category: ["top", "politics"],
-          datatype: "research",
-          pubDate: "2026-05-01 04:37:54",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 05:30:44",
-          image_url:
-            "https://reliefweb.int/sites/default/files/styles/large/public/previews/cb/4b/cb4b8155-3c7e-4db5-bf2f-a6c5ed8508dc.png",
-          video_url: null,
-          source_id: "reliefweb",
-          source_name: "Reliefweb",
-          source_priority: 6281,
-          source_url: "https://reliefweb.int",
-          source_icon: "https://n.bytvi.com/reliefweb.jpg",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: false,
-        },
-        {
-          article_id: "63ced0da18df6fce85cb75c7cb84e931",
-          link: "https://www.channelnewsasia.com/style-beauty/fashion-repair-chanel-hermes-loius-vuitton-uniqlo-patagonia-6053171",
-          title:
-            "Fashion repair services: Where you can fix clothes from Chanel to Uniqlo to extend garment life",
-          description:
-            "A growing number of brands are offering repairs for clothing – CNA Lifestyle finds out who’s doing it, and what to expect from their services.",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: [
-            "louis vuitton",
-            "chanel",
-            "hermes",
-            "sustainability",
-            "fashion",
-            "uniqlo",
-          ],
-          creator: ["chin chih lin"],
-          language: "english",
-          country: [
-            "taiwan",
-            "malaysia",
-            "israel",
-            "bhutan",
-            "hong kong",
-            "india",
-            "vietnam",
-            "philippines",
-            "sri lanka",
-            "north korea",
-            "pakistan",
-            "afghanistan",
-            "japan",
-            "turkey",
-            "myanmar",
-            "bangladesh",
-            "south korea",
-            "cambodia",
-            "maldives",
-            "thailand",
-            "singapore",
-            "china",
-            "mongolia",
-            "indonesia",
-            "nepal",
-            "bahrain",
-            "kuwait",
-          ],
-          category: ["lifestyle", "top"],
-          datatype: "news",
-          pubDate: "2026-05-01 04:36:18",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 05:02:17",
-          image_url:
-            "https://dam.mediacorp.sg/image/upload/s--oLVT2oh7--/c_crop,h_900,w_1600,x_0,y_137/c_fill,g_auto,h_338,w_600/fl_relative,g_south_east,l_mediacorp:cna:watermark:2021-08:cna,w_0.1/f_auto,q_auto/v1/mediacorp/cna/image/2026/04/14/fashion-repair-services-chanel-burberry-levis-uniqlo_1.jpg?itok=VDh8yPTg",
-          video_url: null,
-          source_id: "channelnewsasia",
-          source_name: "Channel Newsasia",
-          source_priority: 4763,
-          source_url: "https://www.channelnewsasia.com",
-          source_icon: "https://n.bytvi.com/channelnewsasia.jpg",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: false,
-        },
-        {
-          article_id: "c295d13c0155a5489808f691adc92a54",
-          link: "https://www.channelnewsasia.com/women/dementia-care-reconnect-identity-ren-ci-6057751",
-          title:
-            "A burning kampung, mum’s curry, a melody: How 3 social workers help people living with dementia reconnect again",
-          description:
-            "Dementia may erode memory, but it does not erase identity. Run by three medical social workers, Ren Ci Hospital’s Re2ignite programme uses music, food, images and sensory activities to help people living with dementia reignite memories and restore connections to who they are.",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: [
-            "outstanding social worker award",
-            "ren ci",
-            "dementia",
-            "womens voices",
-          ],
-          creator: ["annie tan"],
-          language: "english",
-          country: [
-            "taiwan",
-            "malaysia",
-            "israel",
-            "bhutan",
-            "hong kong",
-            "india",
-            "vietnam",
-            "philippines",
-            "sri lanka",
-            "north korea",
-            "pakistan",
-            "afghanistan",
-            "japan",
-            "turkey",
-            "myanmar",
-            "bangladesh",
-            "south korea",
-            "cambodia",
-            "maldives",
-            "thailand",
-            "singapore",
-            "china",
-            "mongolia",
-            "indonesia",
-            "nepal",
-            "bahrain",
-            "kuwait",
-          ],
-          category: ["top", "health"],
-          datatype: "news",
-          pubDate: "2026-05-01 04:35:11",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 05:02:17",
-          image_url:
-            "https://dam.mediacorp.sg/image/upload/s--nJvPV9fj--/c_crop,h_540,w_960,x_0,y_90/c_fill,g_auto,h_338,w_600/f_auto,q_auto/v1/mediacorp/cna/image/2026/04/15/ren-ci-hospital-re2ignite-dementia-support.jpg?itok=JuRhEbvi",
-          video_url: null,
-          source_id: "channelnewsasia",
-          source_name: "Channel Newsasia",
-          source_priority: 4763,
-          source_url: "https://www.channelnewsasia.com",
-          source_icon: "https://n.bytvi.com/channelnewsasia.jpg",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: false,
-        },
-        {
-          article_id: "a3755fe40c09eb1e1f914494ba05d654",
-          link: "https://arynews.tv/ufo-captured-on-camera-seafront-student",
-          title: "UFO captured on camera over seafront by student",
-          description:
-            "An apparent UFO was captured on camera by a student after it was seen hovering for ten seconds over the seafront.",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: ["ufo", "student"],
-          creator: ["web desk"],
-          language: "english",
-          country: ["pakistan"],
-          category: ["top", "crime"],
-          datatype: "news",
-          pubDate: "2026-05-01 04:30:21",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 04:38:27",
-          image_url:
-            "https://static.arynews.tv/zip-archives/wp-content/uploads/2021/07/ufo-1.jpg",
-          video_url: null,
-          source_id: "arynews",
-          source_name: "Ary News",
-          source_priority: 52455,
-          source_url: "https://arynews.tv",
-          source_icon: "https://n.bytvi.com/arynews.jpg",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: false,
-        },
-        {
-          article_id: "6b7c5a2b653d72e305b1b3a158251145",
-          link: "https://www.urdupoint.com/en/middle-east/apple-sales-forecast-beats-expectations-2179476.html",
-          title: "Apple sales forecast beats expectations",
-          description:
-            "Apple on Thursday forecast sales that beat expectations, even as it said it expected to continue to face chip supply constraints, sending shares up more than 3%.Apple executives said they expect sales growth of 14% to 17% in the current fiscal third quarter, which was above Wall Street estimates of ..",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: null,
-          creator: ["fahad shabbir"],
-          language: "english",
-          country: ["pakistan"],
-          category: ["top", "business"],
-          datatype: "news",
-          pubDate: "2026-05-01 04:30:07",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 05:05:06",
-          image_url:
-            "https://photo-cdn.urdupoint.com/images/UrduPoint-English-22.png",
-          video_url: null,
-          source_id: "urdupoint",
-          source_name: "Urdupoint",
-          source_priority: 21431,
-          source_url: "https://www.urdupoint.com",
-          source_icon: "https://n.bytvi.com/urdupoint.png",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: false,
-        },
-        {
-          article_id: "da73e8dea8dd0d64312f14c96f222c61",
-          link: "https://menafn.com/1111057189/Datavault-AI-Schedules-Conference-Call-To-Discuss-First-Quarter-2026-Financial-Results-On-Friday-May-15-2026",
-          title:
-            "Datavault AI Schedules Conference Call To Discuss First Quarter 2026 Financial Results On Friday, May 15, 2026",
-          description:
-            "(MENAFN - ACN NewsWire) Datavault AI Schedules Conference Call to Discuss First Quarter 2026 Financial Results on Friday, May 15, 2026 PHILADELPHIA, PA, May 1, 2026 - (ACN Newswire) - Datavault ...",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: null,
-          creator: null,
-          language: "english",
-          country: [
-            "india",
-            "kuwait",
-            "saudi arabia",
-            "pakistan",
-            "egypt",
-            "qatar",
-            "bahrain",
-            "united arab emirates",
-            "jordan",
-          ],
-          category: ["technology", "top"],
-          datatype: "news",
-          pubDate: "2026-05-01 04:12:31",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 11:35:58",
-          image_url: "https://menafn.com/includes/img/logo.jpg",
-          video_url: null,
-          source_id: "menafn",
-          source_name: "Menafn",
-          source_priority: 28392,
-          source_url: "https://menafn.com",
-          source_icon: "https://n.bytvi.com/menafn.png",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: true,
-        },
-        {
-          article_id: "cc250eba3a0b6821a7e7022936cc6d80",
-          link: "https://menafn.com/1111057119/The-Artists-Who-Ruled-The-Biennial-Circuit-Over-The-Last-Four-Years",
-          title:
-            "The Artists Who Ruled The Biennial Circuit Over The Last Four Years",
-          description:
-            "(MENAFN - USA Art News) Biennial Circuit, Global Reach: Why Kapwani Kiwanga Keeps Appearing Everywhere A new survey of recurring international art events from after the 2022 Venice Biennale through ...",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: null,
-          creator: null,
-          language: "english",
-          country: [
-            "india",
-            "kuwait",
-            "saudi arabia",
-            "pakistan",
-            "egypt",
-            "qatar",
-            "bahrain",
-            "united arab emirates",
-            "jordan",
-          ],
-          category: ["lifestyle", "tourism", "top"],
-          datatype: "news",
-          pubDate: "2026-05-01 04:04:40",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 11:35:58",
-          image_url:
-            "https://menafn.com/updates/pr/2026-04/30/UAN_66e3dimage_story.jpeg",
-          video_url: null,
-          source_id: "menafn",
-          source_name: "Menafn",
-          source_priority: 28392,
-          source_url: "https://menafn.com",
-          source_icon: "https://n.bytvi.com/menafn.png",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: true,
-        },
-        {
-          article_id: "ace0f3899d9b97eedd332961d7cff7f7",
-          link: "https://thefinancialdaily.com/sindh-health-minister-lauds-comstech-efforts-to-boost-pak-china-health-cooperation/",
-          title:
-            "Sindh Health Minister lauds COMSTECH efforts to boost Pak-China health cooperation",
-          description:
-            "Pervaiz Mughal ISLAMABAD: Sindh Minister for Health and Population Welfare Dr. Azra Fazal Pechuho on Thursday lauded the efforts of the OIC-COMSTECH in promoting cooperation between Pakistan and China in the fields of health, science and traditional medicine. She expressed these views during her visit to the COMSTECH Secretariat, where she attended an interactive session [...] The post Sindh Health Minister lauds COMSTECH efforts to boost Pak-China health cooperation appeared first on The Financial Daily .",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: ["comstech"],
-          creator: ["webmaster"],
-          language: "english",
-          country: ["pakistan"],
-          category: ["top", "health"],
-          datatype: "news",
-          pubDate: "2026-05-01 04:04:38",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 04:20:51",
-          image_url:
-            "https://thefinancialdaily.com/wp-content/uploads/2026/05/Sindh-Health-Minister-lauds-COMSTECH-efforts-to-boost-Pak-China-health-cooperation.jpg",
-          video_url: null,
-          source_id: "thefinancialdaily",
-          source_name: "The Financial Daily",
-          source_priority: 2011248,
-          source_url: "https://thefinancialdaily.com",
-          source_icon: "https://n.bytvi.com/thefinancialdaily.png",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: false,
-        },
-        {
-          article_id: "b87265f02c29af37cd98df017b8eadea",
-          link: "https://menafn.com/1111057118/What-Biennials-Reveal-About-The-Art-World",
-          title: "What Biennials Reveal About The Art World",
-          description:
-            "(MENAFN - USA Art News) Venice Biennale Prepares to Open as Biennials Reframe the Global Art Conversation As the Venice Biennale prepares to open next month, the event is once again drawing ...",
-          content: "ONLY AVAILABLE IN PAID PLANS",
-          keywords: null,
-          creator: null,
-          language: "english",
-          country: [
-            "india",
-            "kuwait",
-            "saudi arabia",
-            "pakistan",
-            "egypt",
-            "qatar",
-            "bahrain",
-            "united arab emirates",
-            "jordan",
-          ],
-          category: ["top", "tourism"],
-          datatype: "news",
-          pubDate: "2026-05-01 04:04:37",
-          pubDateTZ: "Asia/Karachi",
-          fetched_at: "2026-05-01 11:35:58",
-          image_url:
-            "https://menafn.com/updates/pr/2026-04/30/UAN_99471image_story.jpeg",
-          video_url: null,
-          source_id: "menafn",
-          source_name: "Menafn",
-          source_priority: 28392,
-          source_url: "https://menafn.com",
-          source_icon: "https://n.bytvi.com/menafn.png",
-          sentiment: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          sentiment_stats: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_tag: "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
-          ai_region: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_org: "ONLY AVAILABLE IN CORPORATE PLANS",
-          ai_summary: "ONLY AVAILABLE IN PAID PLANS",
-          duplicate: true,
-        },
-      ]
+  constructor() {
     super();
-    
-    this.state ={
-      articles:results,
-      loading:false
-    } 
+
+    this.state = {
+      articles: null,
+      loading: true,
+      pageNo: 1,
+    };
   }
- async componentDidMount(){
-    let url=`https://newsdata.io/api/1/latest?` 
-    let api= await fetch(url)
-    let data= await api.json()
+
+  async componentDidMount() {
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=technology&page=${this.state.pageNo}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+    let api = await fetch(url);
+    let data = await api.json();
     this.setState({
-      articles:data.results
-    })
+      articles: data.articles,
+      loading: false,
+    });
   }
+  handleNxt = async () => {
+    this.setState({
+      loading: true,
+    });
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=technology&page=${this.state.pageNo + 1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+    let api = await fetch(url);
+    let data = await api.json();
+    this.setState({
+      articles: data.articles,
+      loading: false,
+      pageNo: this.state.pageNo + 1,
+    });
+  };
+  handlePre = async () => {
+    this.setState({
+      loading: true,
+    });
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=technology&page=${this.state.pageNo - 1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+    let api = await fetch(url);
+    let data = await api.json();
+    this.setState({
+      articles: data.articles,
+      loading: false,
+      pageNo: this.state.pageNo - 1,
+    });
+  };
   render() {
-    
+    const { isDark } = this.props;
     return (
-      <div className="container my-3">
-        <h1>Newify - Todays Latest</h1>
-        <div className="row" >
-        {this.state.articles.map((item) => {
-          return (
-              <div className="col-md-4" key={this.state.articles.article_id}>
-                <NewsItems
-                  title={item.title}
-                  description={item.description}
-                  imgUrl={item.image_url}
-                  newsLink={item.link}
-                />
-              </div>
-          );
-        })}
+      <div className="container  ">
+        <h1 className={`${isDark ? " text-light" : " text-dark"}`}>
+          Newify - Todays Latest
+        </h1>
+        <hr
+          className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
+        />
+        {this.state.loading ? (
+          <div className={`d-flex justify-content-center mt-4 `}>
+            <div
+              className={`spinner-border ${isDark ? " text-light" : " text-dark"}`}
+              role="status"
+            >
+              <span
+                className={`visually-hidden ${isDark ? "bg-dark " : "bg-light "}`}
+              ></span>
+            </div>
+          </div>
+        ) : null}
+        <div className="row">
+          {!this.state.loading &&
+            this.state.articles.map((item) => {
+              return (
+                <div
+                  className="col-md-4"
+                  key={
+                    this.state.articles.url
+                      ? this.state.articles.url
+                      : Math.random()
+                  }
+                >
+                  <NewsItems
+                    title={item.title}
+                    description={item.description}
+                    imgUrl={
+                      item.urlToImage
+                        ? item.urlToImage
+                        : "https://images.digitalfoundry.net/cc15a4cd57510/large.jpg"
+                    }
+                    newsLink={item.url}
+                    isDark={isDark}
+                  />
+                </div>
+              );
+            })}
+        </div>
+        <div className="d-flex justify-content-between mt-4 ">
+          <button
+            className={`button btn btn-${isDark ? "dark btn-outline-light" : "primary"} `}
+            type="button"
+            onClick={this.handlePre}
+            disabled={this.state.pageNo <= 1}
+          >
+            &larr; Previous
+          </button>
+
+          <button
+            className={`button btn btn-${isDark ? "dark btn-outline-light" : "primary"} `}
+            type="button"
+            onClick={this.handleNxt}
+          >
+            Next &rarr;
+          </button>
         </div>
       </div>
     );
