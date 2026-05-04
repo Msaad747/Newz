@@ -1,8 +1,24 @@
 import React, { Component } from "react";
 
 export default class NavBar extends Component {
+  constructor() {
+    super();
+    this.state = {
+      moreopt: false,
+    };
+  }
   render() {
-    const { title, isDark,toogleMode } = this.props;
+    const showMoreOpt = (e) => {
+      e.stopPropagation();
+      this.setState({
+        moreopt: !this.state.moreopt,
+      });
+    };
+    const toGetCate = (e) => {
+      this.props.setCate(e.target.innerText);
+    };
+
+    const { title, isDark, toogleMode } = this.props;
     return (
       <div>
         <nav
@@ -38,7 +54,7 @@ export default class NavBar extends Component {
                     Links&AboutUs
                   </a>
                 </li>
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown" data-bs-auto-close="inside">
                   <a
                     className="nav-link dropdown-toggle"
                     href="/"
@@ -52,46 +68,94 @@ export default class NavBar extends Component {
                   <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdown"
+                    data-bs-auto-close="inside"
                   >
                     <li>
-                      <a className="dropdown-item" href="/">
-                        {"Sports"}
-                      </a>
+                      <button className="dropdown-item" onClick={toGetCate}>
+                        General
+                      </button>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/">
-                        {"Health"}
-                      </a>
+                      <button className="dropdown-item" onClick={toGetCate}>
+                        Health
+                      </button>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/">
-                        {"Politics"}
-                      </a>
+                      <button className="dropdown-item" onClick={toGetCate}>
+                        Sports
+                      </button>
                     </li>
+                    {!this.state.moreopt && (
+                      <li>
+                        <button
+                          className={`dropdown-item bg-secondary text-light`}
+                          onClick={showMoreOpt}
+                        >
+                          ...
+                        </button>
+                      </li>
+                    )}
+                    {this.state.moreopt && (
+                      <>
+                        <li>
+                          <button className="dropdown-item" onClick={toGetCate}>
+                            Technology
+                          </button>
+                        </li>
+                        <li>
+                          <button className="dropdown-item" onClick={toGetCate}>
+                            Business
+                          </button>
+                        </li>
+                        <li>
+                          <button className="dropdown-item" onClick={toGetCate}>
+                            Science
+                          </button>
+                        </li>
+                        <li>
+                          <button className="dropdown-item" onClick={toGetCate}>
+                            Entertainment
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            className={`dropdown-item bg-secondary text-light`}
+                            onClick={showMoreOpt}
+                          >
+                            Show Less
+                          </button>
+                        </li>
+                      </>
+                    )}
+
                     <li>
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/">
-                        {"Top Headlines"}
-                      </a>
+                      <span className="dropdown-item" style={{cursor:"default",}}>
+                        Top Headlines
+                      </span>
                     </li>
                   </ul>
                 </li>
-                  </ul>
-                <div className="form-check form-switch">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id="flexSwitchCheckDefault"
-                    onChange={toogleMode}
-                    checked={isDark?true:false}
-                  />
-                  <label className="form-check-label" htmlFor="flexSwitchCheckDefault" style={{color:isDark?"#fff":"#212529"}}>
-                      {isDark?"Disable Dark Mode":"Enable Dark Mode"}
-                  </label>
-                </div>
+              </ul>
+              <div className="form-check form-switch">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                  onChange={toogleMode}
+                  checked={isDark ? true : false}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckDefault"
+                  style={{ color: isDark ? "#fff" : "#212529" }}
+                >
+                  {isDark ? "Disable Dark Mode" : "Enable Dark Mode"}
+                </label>
+              </div>
             </div>
           </div>
         </nav>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import NewsItems from "./NewsItems";
 
 export class News extends Component {
+ 
   constructor() {
     super();
 
@@ -13,7 +14,7 @@ export class News extends Component {
   }
 
   async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=technology&page=${this.state.pageNo}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category.toLowerCase()}&page=${this.state.pageNo}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
     let api = await fetch(url);
     let data = await api.json();
     this.setState({
@@ -25,7 +26,7 @@ export class News extends Component {
     this.setState({
       loading: true,
     });
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=technology&page=${this.state.pageNo + 1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category.toLowerCase()}&page=${this.state.pageNo + 1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
     let api = await fetch(url);
     let data = await api.json();
     this.setState({
@@ -38,7 +39,7 @@ export class News extends Component {
     this.setState({
       loading: true,
     });
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=technology&page=${this.state.pageNo - 1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=technolog${this.props.category.toLowerCase()}&page=${this.state.pageNo - 1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
     let api = await fetch(url);
     let data = await api.json();
     this.setState({
@@ -48,11 +49,11 @@ export class News extends Component {
     });
   };
   render() {
-    const { isDark } = this.props;
+    const { isDark ,} = this.props;
     return (
       <div className="container  ">
-        <h1 className={`${isDark ? " text-light" : " text-dark"}`}>
-          Newify - Todays Latest
+        <h1 className={` text-center ${isDark ? " text-light" : " text-dark"}`}>
+          Newify - Top-Headlines {this.props.category}
         </h1>
         <hr
           className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
@@ -90,6 +91,9 @@ export class News extends Component {
                         : "https://images.digitalfoundry.net/cc15a4cd57510/large.jpg"
                     }
                     newsLink={item.url}
+                    author={item.author}
+                    time={item.publishedAt}
+                    source={item.source}
                     isDark={isDark}
                   />
                 </div>
