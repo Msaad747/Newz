@@ -6,8 +6,8 @@ function App() {
   const [mode, setmode] = useState("light");
   const [category, setcategory] = useState("General");
   let isDark = mode === "dark";
-  // document.body.style.backgroundColor =
-  //   mode === "light" ? "#2e3238" : "#e2dbdbd3";
+  document.body.style.backgroundColor =
+    mode === "light" ? "#e2dbdbd3" :"#2e3238" ;
   const toogleMode = () => {
     setmode(mode === "light" ? "dark" : "light");
     document.body.style.backgroundColor =

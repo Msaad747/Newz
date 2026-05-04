@@ -52,7 +52,7 @@ export class News extends Component {
     const { isDark ,} = this.props;
     return (
       <div className="container  ">
-        <h1 className={` text-center ${isDark ? " text-light" : " text-dark"}`}>
+        <h1 className={`text-center ${isDark ? " text-light" : " text-dark"}`}>
           Newify - Top-Headlines {this.props.category}
         </h1>
         <hr
