@@ -4,10 +4,14 @@ import NavBar from "./Component/NavBar";
 import News from "./Component/News";
 function App() {
   const [mode, setmode] = useState("light");
-  const [category, setcategory] = useState("General");
+  const [category, setcategory] = useState({
+    cate:"General",
+    query:"everything",
+  });
+  
   let isDark = mode === "dark";
   document.body.style.backgroundColor =
-    mode === "light" ? "#e2dbdbd3" :"#2e3238" ;
+    mode === "light" ? "#e2dbdbd3" : "#2e3238";
   const toogleMode = () => {
     setmode(mode === "light" ? "dark" : "light");
     document.body.style.backgroundColor =
@@ -21,9 +25,10 @@ function App() {
         isDark={isDark}
         toogleMode={toogleMode}
         setCate={setcategory}
+        
       />
 
-      <News key={category} isDark={isDark} category={category} />
+      <News key={category.cate} isDark={isDark} category={category}  />
     </>
   );
 }

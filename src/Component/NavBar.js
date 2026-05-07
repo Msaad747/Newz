@@ -5,6 +5,8 @@ export default class NavBar extends Component {
     super();
     this.state = {
       moreopt: false,
+      searchbar: false,
+      searchText: "",
     };
   }
   render() {
@@ -12,10 +14,31 @@ export default class NavBar extends Component {
       e.stopPropagation();
       this.setState({
         moreopt: !this.state.moreopt,
+        searchbar: false,
       });
     };
     const toGetCate = (e) => {
-      this.props.setCate(e.target.innerText);
+      this.props.setCate({ cate: e.target.innerText });
+      this.setState({
+        searchbar: false,
+      });
+    };
+    const searchBar = (e) => {
+      this.props.setCate({
+       cate:   e.target.innerText
+    });
+      this.setState({
+        searchbar: true,
+      });
+    };
+    const handleSearchChange = (e) => {
+      this.setState({
+        searchText: e.target.value,
+      });
+    };
+    const handleSearchClick = () => {
+      // setquery(this.state.searchText)
+      console.log(this.setState.searchText);
     };
 
     const { title, isDark, toogleMode } = this.props;
@@ -28,17 +51,7 @@ export default class NavBar extends Component {
             <a className="navbar-brand" href="/">
               {title}
             </a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
+
             <div
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
@@ -54,6 +67,7 @@ export default class NavBar extends Component {
                     Links&AboutUs
                   </a>
                 </li>
+
                 <li className="nav-item dropdown" data-bs-auto-close="inside">
                   <a
                     className="nav-link dropdown-toggle"
@@ -132,14 +146,26 @@ export default class NavBar extends Component {
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <span className="dropdown-item" style={{cursor:"default",}}>
+                      <span
+                        className="dropdown-item"
+                        style={{ cursor: "default" }}
+                      >
                         Top Headlines
                       </span>
                     </li>
                   </ul>
                 </li>
+                <li className="nav-item">
+                  <span
+                    className="nav-link"
+                    onClick={searchBar}
+                    style={{ cursor: "pointer" }}
+                  >
+                    Everything
+                  </span>
+                </li>
               </ul>
-              <div className="form-check form-switch">
+              <div className={`form-check form-switch mx-3`}>
                 <input
                   className="form-check-input"
                   type="checkbox"
@@ -148,14 +174,33 @@ export default class NavBar extends Component {
                   onChange={toogleMode}
                   checked={isDark ? true : false}
                 />
-                <label
-                  className="form-check-label"
-                  htmlFor="flexSwitchCheckDefault"
-                  style={{ color: isDark ? "#fff" : "#212529" }}
-                >
-                  {isDark ? "Disable Dark Mode" : "Enable Dark Mode"}
-                </label>
+                {!this.state.searchbar && (
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexSwitchCheckDefault"
+                    style={{ color: isDark ? "#fff" : "#212529" }}
+                  >
+                    {isDark ? "Disable Dark Mode" : "Enable Dark Mode"}
+                  </label>
+                )}
               </div>
+              {this.state.searchbar && (
+                <form className="d-flex">
+                  <input
+                    className=" me-2 "
+                    type="text"
+                    value={this.state.searchText}
+                    onChange={handleSearchChange}
+                  />
+                  <button
+                    className="btn-dark btn-outline-light"
+                    type="button"
+                    onClick={handleSearchClick}
+                  >
+                    Search
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </nav>

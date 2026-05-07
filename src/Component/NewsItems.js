@@ -17,7 +17,7 @@ export class NewsItems extends Component {
               <a href={newsLink?newsLink:""} target="blank" className={`btn ${isDark?"btn-dark btn-outline-light":"btn-primary btn-outline-light"}`}>
                 Read More
               </a>
-              <span style={{fontFamily:"monospace",fontSize:14}}className=""><b>Source:</b> {`{ ${this.props.source.name?this.props.source.name:"Unknown Source"} }`}</span>
+              <span style={{fontFamily:"monospace",fontSize:14}}className=""><b>Source:</b> {`{ ${this.props.source.name?this.props.source.name.slice(0,15):"Unknown Source"}... }`}</span>
             </div>
           </div>
         </div>

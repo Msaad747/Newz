@@ -14,7 +14,7 @@ export class News extends Component {
   }
 
   async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category.toLowerCase()}&page=${this.state.pageNo}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+    let url = `https://newsapi.org/v2/${this.props.category.cate.toLowerCase()==="everything"?`everything?q=${this.props.category.query}&`:"top-headlines?"}${this.props.category.cate.toLowerCase()==="everything"?`language=en`:"country=us"}${this.props.category.cate.toLowerCase()==="everything"?"":`&category=${this.props.category.cate}`}&page=${this.state.pageNo}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
     let api = await fetch(url);
     let data = await api.json();
     this.setState({
@@ -26,7 +26,7 @@ export class News extends Component {
     this.setState({
       loading: true,
     });
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${this.props.category.toLowerCase()}&page=${this.state.pageNo + 1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+    let url = `https://newsapi.org/v2/${this.props.category.cate.toLowerCase()==="everything"?`everything?q=${this.props.category.query}&`:"top-headlines?"}${this.props.category.cate.toLowerCase()==="everything"?`language=en`:"country=us"}${this.props.category.cate.toLowerCase()==="everything"?"":`&category=${this.props.category.cate}`}&page=${this.state.pageNo+1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
     let api = await fetch(url);
     let data = await api.json();
     this.setState({
@@ -39,7 +39,7 @@ export class News extends Component {
     this.setState({
       loading: true,
     });
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=technolog${this.props.category.toLowerCase()}&page=${this.state.pageNo - 1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+    let url = `https://newsapi.org/v2/${this.props.category.cate.toLowerCase()==="everything"?`everything?q=${this.props.category.query}&`:"top-headlines?"}${this.props.category.cate.toLowerCase()==="everything"?`language=en`:"country=us"}${this.props.category.cate.toLowerCase()==="everything"?"":`&category=${this.props.category.cate}`}&page=${this.state.pageNo-1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
     let api = await fetch(url);
     let data = await api.json();
     this.setState({
@@ -53,7 +53,7 @@ export class News extends Component {
     return (
       <div className="container  ">
         <h1 className={`text-center ${isDark ? " text-light" : " text-dark"}`}>
-          Newify - Top-Headlines {this.props.category}
+          Newify - Top-Headlines<br />{`[ ${this.props.category.cate} ]`}
         </h1>
         <hr
           className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
@@ -69,7 +69,7 @@ export class News extends Component {
               ></span>
             </div>
           </div>
-        ) : null}
+        ) : null} 
         <div className="row">
           {!this.state.loading &&
             this.state.articles.map((item) => {
