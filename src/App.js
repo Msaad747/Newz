@@ -28,7 +28,7 @@ function App() {
         
       />
 
-      <News key={category.cate} isDark={isDark} category={category}  />
+      <News key={category.cate          } isDark={isDark} category={category}  />
     </>
   );
 }

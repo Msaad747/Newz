@@ -23,10 +23,10 @@ export default class NavBar extends Component {
         searchbar: false,
       });
     };
-    const searchBar = (e) => {
+    const searchBarAndEverythingTab = (e) => {
       this.props.setCate({
-       cate:   e.target.innerText
-    });
+        cate: e.target.innerText,
+      });
       this.setState({
         searchbar: true,
       });
@@ -37,8 +37,11 @@ export default class NavBar extends Component {
       });
     };
     const handleSearchClick = () => {
-      // setquery(this.state.searchText)
-      console.log(this.setState.searchText);
+      this.props.setCate({
+        cate : false,
+        query: this.state.searchText
+      })
+      
     };
 
     const { title, isDark, toogleMode } = this.props;
@@ -158,7 +161,7 @@ export default class NavBar extends Component {
                 <li className="nav-item">
                   <span
                     className="nav-link"
-                    onClick={searchBar}
+                    onClick={searchBarAndEverythingTab}
                     style={{ cursor: "pointer" }}
                   >
                     Everything
