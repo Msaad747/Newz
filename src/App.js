@@ -8,6 +8,8 @@ function App() {
     cate:"General",
     query:"everything",
   });
+  const [rdmKeyGen,setrdmKeyGen] =useState(Math.random())
+  
   
   let isDark = mode === "dark";
   document.body.style.backgroundColor =
@@ -18,6 +20,7 @@ function App() {
       mode === "light" ? "#2e3238" : "#e2dbdbd3";
   };
 
+
   return (
     <>
       <NavBar
@@ -25,10 +28,11 @@ function App() {
         isDark={isDark}
         toogleMode={toogleMode}
         setCate={setcategory}
+        keyGen={setrdmKeyGen}
         
       />
 
-      <News key={category.cate          } isDark={isDark} category={category}  />
+      <News key={rdmKeyGen} isDark={isDark} category={category}  />
     </>
   );
 }

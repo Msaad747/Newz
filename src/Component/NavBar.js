@@ -22,6 +22,7 @@ export default class NavBar extends Component {
       this.setState({
         searchbar: false,
       });
+      this.props.keyGen(Math.random());
     };
     const searchBarAndEverythingTab = (e) => {
       this.props.setCate({
@@ -30,21 +31,30 @@ export default class NavBar extends Component {
       this.setState({
         searchbar: true,
       });
+      this.props.keyGen(Math.random());
     };
     const handleSearchChange = (e) => {
       this.setState({
         searchText: e.target.value,
       });
     };
-    const handleSearchClick = () => {
+    const handleSearchKeyPress = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleSearchClick(e);
+      }
+    };
+    const handleSearchClick = (e) => {
+      e.preventDefault();
       this.props.setCate({
-        cate : false,
+        cate : "Everything",
         query: this.state.searchText
       })
+      this.props.keyGen(Math.random());
       
     };
 
-    const { title, isDark, toogleMode } = this.props;
+    const { title, isDark, toogleMode, } = this.props;
     return (
       <div>
         <nav
@@ -54,7 +64,17 @@ export default class NavBar extends Component {
             <a className="navbar-brand" href="/">
               {title}
             </a>
-
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
             <div
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
@@ -190,14 +210,17 @@ export default class NavBar extends Component {
               {this.state.searchbar && (
                 <form className="d-flex">
                   <input
-                    className=" me-2 "
+                    className=" form-control me-2 "
                     type="text"
                     value={this.state.searchText}
                     onChange={handleSearchChange}
+                    onKeyPress={handleSearchKeyPress}
+                    placeholder="Search" 
+                    aria-label="Search"
                   />
                   <button
-                    className="btn-dark btn-outline-light"
-                    type="button"
+                    type="submit"
+                    className={`btn btn-outline-${isDark?"light":"success"}`}
                     onClick={handleSearchClick}
                   >
                     Search

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import NewsItems from "./NewsItems";
+import Spinner from "./Spinner";
 
 export class News extends Component {
- 
   constructor() {
     super();
 
@@ -12,64 +12,54 @@ export class News extends Component {
       pageNo: 1,
     };
   }
-
-  async componentDidMount() {
-    let url = `https://newsapi.org/v2/${this.props.category.cate.toLowerCase()==="everything"?`everything?q=${this.props.category.query}&`:"top-headlines?"}${this.props.category.cate.toLowerCase()==="everything"?`language=en`:"country=us"}${this.props.category.cate.toLowerCase()==="everything"?"":`&category=${this.props.category.cate}`}&page=${this.state.pageNo}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+  fetchNews = async () => {
+    this.setState({ loading: true });
+    let url = `https://newsapi.org/v2/${this.props.category.cate.toLowerCase() === "everything" ? `everything?q=${this.props.category.query}&` : "top-headlines?"}${this.props.category.cate.toLowerCase() === "everything" ? `language=en` : "country=us"}${this.props.category.cate.toLowerCase() === "everything" ? "" : `&category=${this.props.category.cate}`}&page=${this.state.pageNo}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
     let api = await fetch(url);
     let data = await api.json();
     this.setState({
       articles: data.articles,
       loading: false,
     });
+  };
+
+   componentDidMount() {
+    this.fetchNews();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.category.cate !== this.props.category.cate || 
+        prevProps.category.query !== this.props.category.query) {
+      this.setState({ pageNo: 1 }, () => {
+        this.fetchNews();
+      });
+    }
   }
   handleNxt = async () => {
-    this.setState({
-      loading: true,
-    });
-    let url = `https://newsapi.org/v2/${this.props.category.cate.toLowerCase()==="everything"?`everything?q=${this.props.category.query}&`:"top-headlines?"}${this.props.category.cate.toLowerCase()==="everything"?`language=en`:"country=us"}${this.props.category.cate.toLowerCase()==="everything"?"":`&category=${this.props.category.cate}`}&page=${this.state.pageNo+1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
-    let api = await fetch(url);
-    let data = await api.json();
-    this.setState({
-      articles: data.articles,
-      loading: false,
+    await this.setState({
       pageNo: this.state.pageNo + 1,
     });
+    this.fetchNews();
   };
   handlePre = async () => {
-    this.setState({
-      loading: true,
-    });
-    let url = `https://newsapi.org/v2/${this.props.category.cate.toLowerCase()==="everything"?`everything?q=${this.props.category.query}&`:"top-headlines?"}${this.props.category.cate.toLowerCase()==="everything"?`language=en`:"country=us"}${this.props.category.cate.toLowerCase()==="everything"?"":`&category=${this.props.category.cate}`}&page=${this.state.pageNo-1}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
-    let api = await fetch(url);
-    let data = await api.json();
-    this.setState({
-      articles: data.articles,
-      loading: false,
+    await this.setState({
       pageNo: this.state.pageNo - 1,
     });
+    this.fetchNews();
   };
   render() {
-    const { isDark ,} = this.props;
+    const { isDark } = this.props;
     return (
       <div className="container  ">
         <h1 className={`text-center ${isDark ? " text-light" : " text-dark"}`}>
-          Newify - Top-Headlines<br />{`[ ${this.props.category.cate} ]`}
+          Newify  {`${this.props.category.cate==="Everything"?"":"- Top-HeadLines"}`}
+          <br />
+          {`[ ${this.props.category.cate}\n ${this.props.category.query?` About ${this.props.category.query}`:""} ]`}
         </h1>
         <hr
           className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
         />
-        {this.state.loading ? (
-          <div className={`d-flex justify-content-center mt-4 `}>
-            <div
-              className={`spinner-border ${isDark ? " text-light" : " text-dark"}`}
-              role="status"
-            >
-              <span
-                className={`visually-hidden ${isDark ? "bg-dark " : "bg-light "}`}
-              ></span>
-            </div>
-          </div>
-        ) : null} 
+        {this.state.loading ? <Spinner isDark={isDark} /> : null}
         <div className="row">
           {!this.state.loading &&
             this.state.articles.map((item) => {
