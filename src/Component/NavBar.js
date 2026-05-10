@@ -47,23 +47,32 @@ export default class NavBar extends Component {
     const handleSearchClick = (e) => {
       e.preventDefault();
       this.props.setCate({
-        cate : "Everything",
-        query: this.state.searchText
-      })
+        cate: "Everything",
+        query: this.state.searchText,
+      });
       this.props.keyGen(Math.random());
-      
     };
 
-    const { title, isDark, toogleMode, } = this.props;
+    const { title, isDark, toogleMode } = this.props;
     return (
       <div>
         <nav
           className={`navbar navbar-expand-lg ${isDark ? "navbar-dark bg-dark" : "navbar-light bg-light"} fixed-top`}
         >
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
+            <span
+              className="navbar-brand"
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                this.props.setCate({ cate: "General" });
+                this.setState({
+                  searchbar: false,
+                });
+                this.props.keyGen(Math.random());
+              }}
+            >
               {title}
-            </a>
+            </span>
             <button
               className="navbar-toggler"
               type="button"
@@ -128,7 +137,7 @@ export default class NavBar extends Component {
                           className={`dropdown-item bg-secondary text-light`}
                           onClick={showMoreOpt}
                         >
-                          ...
+                          Show More...
                         </button>
                       </li>
                     )}
@@ -159,7 +168,7 @@ export default class NavBar extends Component {
                             className={`dropdown-item bg-secondary text-light`}
                             onClick={showMoreOpt}
                           >
-                            Show Less
+                            Show Less...
                           </button>
                         </li>
                       </>
@@ -215,12 +224,12 @@ export default class NavBar extends Component {
                     value={this.state.searchText}
                     onChange={handleSearchChange}
                     onKeyPress={handleSearchKeyPress}
-                    placeholder="Search" 
+                    placeholder="Search"
                     aria-label="Search"
                   />
                   <button
                     type="submit"
-                    className={`btn btn-outline-${isDark?"light":"success"}`}
+                    className={`btn btn-outline-${isDark ? "light" : "success"}`}
                     onClick={handleSearchClick}
                   >
                     Search

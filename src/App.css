@@ -7,5 +7,17 @@ body {
 }
 .text-center {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  margin: 40px  0px 25px;
+  margin: 40px 0px 25px;
 }
+/*
+  
+@media (max-width: 576px) {
+  body{
+    padding: 10px;
+    margin-top: 25px;
+  }
+  .articles{
+    height: fit-content ;
+
+  }
+} */

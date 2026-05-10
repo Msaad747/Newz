@@ -14,7 +14,7 @@ export class NewsItems extends Component {
             {`{ ${this.props.source.name ? this.props.source.name.slice(0, 15) : "Unknown Source"}... }`}
           </span>
         </div>
-        <div className={`card mb-3 ${isDark ? "border-light" : "border-dark"}`}>
+        <div className={`articles card mb-3 ${isDark ? "border-light" : "border-dark"}`}>
           <img
             src={imgUrl}
             className="card-img-top"
@@ -28,8 +28,8 @@ export class NewsItems extends Component {
             <p className="card-text">
               {description ? description : "Click Below To Read More ..."}
             </p>
-            <p className="card-text" style={{color:"#c5293eab", cursor:"default"}}>
-              <small className="text-muted">
+            <p className="card-text " >
+              <small className="text-danger">
                 By {author ? author : "Unknown"} on{" "}
                 {time ? new Date(time).toGMTString() : "Random Day"}
               </small>
