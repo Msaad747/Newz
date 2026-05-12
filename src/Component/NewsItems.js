@@ -10,7 +10,7 @@ export default function NewsItems(props) {
             className={` badge rounded-pill ${isDark ? "bg-danger" : "bg-secondary"} `}
           >
             <b>Source:</b>{" "}
-            {`{ ${source.name ? source.name.slice(0, 15) : "Unknown Source"}... }`}
+            {`{ ${source.name ? source.name.slice(0, 15) : "Unknown Source"}}`}
           </span>
         </div>
       <div
