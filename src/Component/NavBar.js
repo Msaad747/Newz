@@ -72,9 +72,12 @@ export default function NavBar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <span className="nav-link"
+                style={{cursor:"pointer"}}
+                //  onClick={props.setTabs(true)}
+                 >
                   Links&AboutUs
-                </a>
+                </span>
               </li>
 
               <li className="nav-item dropdown" data-bs-auto-close="inside">
@@ -175,8 +178,6 @@ export default function NavBar(props) {
               </li>
             </ul>
             <div className={`form-check form-switch mx-3`}>
-              
-
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -184,15 +185,18 @@ export default function NavBar(props) {
                 id="flexSwitchCheckDefault"
                 onChange={toogleMode}
                 checked={isDark ? true : false}
-                />
+              />
               {searchbar && (
                 <>
-                   <small className={`${isDark?"text-light":"text-dark"}`} style={{ fontSize: "12px" , }}>
-                     Dark mode
-                   </small>
+                  <small
+                    className={`${isDark ? "text-light" : "text-dark"}`}
+                    style={{ fontSize: "12px" }}
+                  >
+                    Dark mode
+                  </small>
                 </>
               )}
-              
+
               {!searchbar && (
                 <label
                   className="form-check-label"

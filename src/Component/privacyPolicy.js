@@ -1,16 +1,16 @@
 import React from "react";
 
 export default function PrivacyPolicy(props) {
-  const isDark = props.style.backgroundColor === "#212529";
+ 
 
   return (
     <div
-      className={`container   mx-3 ${isDark ? "text-light" : "text-dark"}`}
+      className={`container   mx-3 ${props.isDark ? "text-light" : "text-dark"}`}
       style={{ fontFamily: "Times New Roman" }}
     >
       <div className="text-left mt-1 mb-2">
         <button
-          className={`btn ${isDark ? "btn-outline-light" : "btn-outline-dark"} fs-4 mb-3 `}
+          className={`btn ${props.isDark ? "btn-outline-light" : "btn-outline-dark"} fs-4 mb-3 `}
           style={{cursor:"default"}}
         >
           🔒 Privacy Policy
