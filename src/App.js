@@ -9,9 +9,8 @@ function App() {
     query:"everything",
   });
   const [rdmKeyGen,setrdmKeyGen] =useState(Math.random())
-  
-  
-  let isDark = mode === "dark";
+  const apikey=process.env.REACT_APP_NEWS_API;
+  const isDark = mode === "dark";
   document.body.style.backgroundColor =
     mode === "light" ? "#e2dbdbd3" : "#2e3238";
   const toogleMode = () => {
@@ -32,7 +31,7 @@ function App() {
         
       />
 
-      <News key={rdmKeyGen} isDark={isDark} category={category}  />
+      <News key={rdmKeyGen} isDark={isDark} category={category} apikey={apikey} />
     </>
   );
 }

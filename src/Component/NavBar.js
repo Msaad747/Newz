@@ -36,7 +36,7 @@ export default function NavBar(props) {
     e.preventDefault();
     props.setCate({
       cate: "Everything",
-      query: this.state.searchText,
+      query: searchText,
     });
     props.keyGen(Math.random());
   };
@@ -180,6 +180,8 @@ export default function NavBar(props) {
               </li>
             </ul>
             <div className={`form-check form-switch mx-3`}>
+              
+
               <input
                 className="form-check-input"
                 type="checkbox"
@@ -187,7 +189,15 @@ export default function NavBar(props) {
                 id="flexSwitchCheckDefault"
                 onChange={toogleMode}
                 checked={isDark ? true : false}
-              />
+                />
+              {searchbar && (
+                <>
+                   <small className={`${isDark?"text-light":"text-dark"}`} style={{ fontSize: "12px" , }}>
+                     Dark mode
+                   </small>
+                </>
+              )}
+              
               {!searchbar && (
                 <label
                   className="form-check-label"

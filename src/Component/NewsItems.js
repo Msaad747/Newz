@@ -1,17 +1,18 @@
 import React from "react";
 
 export default function NewsItems(props) {
-  const { title, description, imgUrl, newsLink, isDark, author, time,source } = props;
+  const { title, description, imgUrl, newsLink, isDark, author, time, source } =
+    props;
   return (
     <div>
-      <div className="d-flex justify-content-end ">
-        <span
-          className={` badge rounded-pill ${isDark ? "bg-danger" : "bg-secondary"} `}
-        >
-          <b>Source:</b>{" "}
-          {`{ ${source.name ? source.name.slice(0, 15) : "Unknown Source"}... }`}
-        </span>
-      </div>
+        <div className="d-flex justify-content-end " style={{backgroundColor:"transparent"}}>
+          <span
+            className={` badge rounded-pill ${isDark ? "bg-danger" : "bg-secondary"} `}
+          >
+            <b>Source:</b>{" "}
+            {`{ ${source.name ? source.name.slice(0, 15) : "Unknown Source"}... }`}
+          </span>
+        </div>
       <div
         className={`articles card mb-3 ${isDark ? "border-light" : "border-dark"}`}
       >

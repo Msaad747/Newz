@@ -3,11 +3,12 @@ import useInfiniteScroll from "react-infinite-scroll-hook";
 import NewsItems from "./NewsItems";
 import Spinner from "./Spinner";
 
-const News = ({ category, isDark }) => {
+const News = ({ category, isDark,apikey }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
+ 
 
   const fetchNews = useCallback(
     async (page) => {
@@ -25,7 +26,7 @@ const News = ({ category, isDark }) => {
           category.cate.toLowerCase() === "everything"
             ? ""
             : `&category=${category.cate}`
-        }&page=${page}&pageSize=6&apiKey=8a878ba3ee08491395a2fc0344064fc8`;
+        }&page=${page}&pageSize=6&apiKey=${apikey}`;
 
         let api = await fetch(url);
         let data = await api.json();
@@ -44,7 +45,7 @@ const News = ({ category, isDark }) => {
         setLoading(false);
       }
     },
-    [category],
+    [category,apikey]
   );
 
   // Initial fetch on component mount or category change
@@ -65,25 +66,26 @@ const News = ({ category, isDark }) => {
   });
 
   return (
+    <>
     <div className="container">
-      <h1 className={`text-center ${isDark ? " text-light" : " text-dark"}`}>
-        Newify {`${category.cate === "Everything" ? "" : "- Top-HeadLines"}`}
+      <h1 className={`text-center ${isDark ? " text-light" : " text-dark"}`} style={{fontFamily:"Times NEw Roman"}}>
+        Newify {`${category.cate === "Everything" ? "" : "- Top-Headlines"}`}
         <br />
         {`[ ${category.cate}\n ${
           category.cate === "Everything"
-            ? category.query
-              ? ` About ${
-                  category.query.charAt(0).toUpperCase() +
-                  category.query.slice(1)
-                }`
-              : ""
-            : ""
+          ? category.query
+          ? ` About ${
+            category.query.charAt(0).toUpperCase() +
+            category.query.slice(1)
+          }`
+          : ""
+          : ""
         } ]`}
       </h1>
+      
       <hr
         className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
-      />
-
+        />
       <div className="row">
         {articles.length > 0 &&
           articles.map((item) => {
@@ -94,8 +96,8 @@ const News = ({ category, isDark }) => {
                   description={item.description}
                   imgUrl={
                     item.urlToImage
-                      ? item.urlToImage
-                      : "https://images.digitalfoundry.net/cc15a4cd57510/large.jpg"
+                    ? item.urlToImage
+                    : "https://images.digitalfoundry.net/cc15a4cd57510/large.jpg"
                   }
                   newsLink={item.url}
                   author={item.author}
@@ -120,6 +122,7 @@ const News = ({ category, isDark }) => {
         )}
       </div>
     </div>
+          </>
   );
 };
 

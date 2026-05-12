@@ -1,5 +1,5 @@
 body {
-  padding: 70px;
+  padding: 38px;
 }
 .button:focus {
   outline: none !important;
@@ -9,7 +9,7 @@ body {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   margin: 40px 0px 25px;
 }
-/*
+
   
 @media (max-width: 576px) {
   body{
@@ -20,4 +20,4 @@ body {
     height: fit-content ;
 
   }
-} */
+}
