@@ -201,6 +201,7 @@ export default function NavBar(props) {
                 <input
                   className={` form-control me-2  ${isDark? "bg-dark text-light border-light" : "bg-light text-dark border-success"}`}
                   type="text"
+                  id={"searchInput"}
                   value={searchText}
                   onChange={handleSearchChange}
                   onKeyPress={handleSearchKeyPress}
