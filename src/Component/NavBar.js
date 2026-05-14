@@ -1,27 +1,22 @@
 import React, { useState } from "react";
 
 export default function NavBar(props) {
-  const [moreopt, setMoreOpt] = useState(false);
   const [searchbar, setSearchBar] = useState(false);
   const [searchText, setSearchText] = useState("");
 
-  const showMoreOpt = (e) => {
-    e.stopPropagation();
-    setMoreOpt((prev) => !prev);
-    setSearchBar(false);
-  };
   const toGetCate = (e) => {
     props.setCate({ cate: e.target.innerText });
-
     setSearchBar(false);
-    props.keyGen(Math.random());
+    props.keyGen(e.target.innerText);
+    props.setTabs("Category Tabs");
   };
   const searchBarAndEverythingTab = (e) => {
     props.setCate({
       cate: e.target.innerText,
     });
     setSearchBar(true);
-    props.keyGen(Math.random());
+    props.keyGen("searchBarAndEverythingTab");
+    props.setTabs("Everything Tab");
   };
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
@@ -38,7 +33,7 @@ export default function NavBar(props) {
       cate: "Everything",
       query: searchText,
     });
-    props.keyGen(Math.random());
+    props.keyGen(searchText);
   };
   const { title, isDark, toogleMode } = props;
   return (
@@ -50,10 +45,11 @@ export default function NavBar(props) {
           <span
             className="navbar-brand"
             style={{ cursor: "pointer" }}
-            onClick={() => {
+            onClick={(e) => {
               props.setCate({ cate: "General" });
               setSearchBar(false);
               props.keyGen(Math.random());
+              props.setTabs("Newzify");
             }}
           >
             {title}
@@ -72,11 +68,25 @@ export default function NavBar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <span className="nav-link"
-                style={{cursor:"pointer"}}
-                //  onClick={props.setTabs(true)}
-                 >
-                  Links&AboutUs
+                <span
+                  className="nav-link"
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => {
+                    props.setTabs("AboutUs");
+                  }}
+                >
+                  AboutUs
+                </span>
+              </li>
+              <li className="nav-item">
+                <span
+                  className="nav-link"
+                  style={{ cursor: "pointer" }}
+                  onClick={(e) => {
+                    props.setTabs("Privacy Policy");
+                  }}
+                >
+                  Privacy Policy
                 </span>
               </li>
 
@@ -111,48 +121,27 @@ export default function NavBar(props) {
                       Sports
                     </button>
                   </li>
-                  {!moreopt && (
-                    <li>
-                      <button
-                        className={`dropdown-item bg-secondary text-light`}
-                        onClick={showMoreOpt}
-                      >
-                        Show More...
-                      </button>
-                    </li>
-                  )}
-                  {moreopt && (
-                    <>
-                      <li>
-                        <button className="dropdown-item" onClick={toGetCate}>
-                          Technology
-                        </button>
-                      </li>
-                      <li>
-                        <button className="dropdown-item" onClick={toGetCate}>
-                          Business
-                        </button>
-                      </li>
-                      <li>
-                        <button className="dropdown-item" onClick={toGetCate}>
-                          Science
-                        </button>
-                      </li>
-                      <li>
-                        <button className="dropdown-item" onClick={toGetCate}>
-                          Entertainment
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className={`dropdown-item bg-secondary text-light`}
-                          onClick={showMoreOpt}
-                        >
-                          Show Less...
-                        </button>
-                      </li>
-                    </>
-                  )}
+
+                  <li>
+                    <button className="dropdown-item" onClick={toGetCate}>
+                      Technology
+                    </button>
+                  </li>
+                  <li>
+                    <button className="dropdown-item" onClick={toGetCate}>
+                      Business
+                    </button>
+                  </li>
+                  <li>
+                    <button className="dropdown-item" onClick={toGetCate}>
+                      Science
+                    </button>
+                  </li>
+                  <li>
+                    <button className="dropdown-item" onClick={toGetCate}>
+                      Entertainment
+                    </button>
+                  </li>
 
                   <li>
                     <hr className="dropdown-divider" />
@@ -210,7 +199,7 @@ export default function NavBar(props) {
             {searchbar && (
               <form className="d-flex">
                 <input
-                  className=" form-control me-2 "
+                  className={` form-control me-2  ${isDark? "bg-dark text-light border-light" : "bg-light text-dark border-success"}`}
                   type="text"
                   value={searchText}
                   onChange={handleSearchChange}

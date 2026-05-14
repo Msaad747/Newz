@@ -3,12 +3,11 @@ import useInfiniteScroll from "react-infinite-scroll-hook";
 import NewsItems from "./NewsItems";
 import Spinner from "./Spinner";
 
-const News = ({ category, isDark,apikey }) => {
+const News = ({ category, isDark, apikey }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
- 
 
   const fetchNews = useCallback(
     async (page) => {
@@ -45,7 +44,7 @@ const News = ({ category, isDark,apikey }) => {
         setLoading(false);
       }
     },
-    [category,apikey]
+    [category, apikey],
   );
 
   // Initial fetch on component mount or category change
@@ -67,62 +66,68 @@ const News = ({ category, isDark,apikey }) => {
 
   return (
     <>
-    <div className="container">
-      <h1 className={`text-center ${isDark ? " text-light" : " text-dark"}`} style={{fontFamily:"Times NEw Roman"}}>
-        Newify {`${category.cate === "Everything" ? "" : "- Top-Headlines"}`}
-        <br />
-        {`[ ${category.cate}\n ${
-          category.cate === "Everything"
-          ? category.query
-          ? ` About ${
-            category.query.charAt(0).toUpperCase() +
-            category.query.slice(1)
-          }`
-          : ""
-          : ""
-        } ]`}
-      </h1>
-      
-      <hr
-        className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
+      <div className="container">
+        <h1
+          className={`text-center ${isDark ? " text-light" : " text-dark"}`}
+          style={{ fontFamily: "Times NEw Roman" }}
+        >
+          Newify {`${category.cate === "Everything" ? "" : "- Top-Headlines"}`}
+          <br />
+          {`[ ${category.cate}\n ${
+            category.cate === "Everything"
+              ? category.query
+                ? ` About ${
+                    category.query.charAt(0).toUpperCase() +
+                    category.query.slice(1)
+                  }`
+                : ""
+              : ""
+          } ]`}
+        </h1>
+
+        <hr
+          className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
         />
-      <div className="row">
-        {articles.length > 0 &&
-          articles.map((item) => {
-            return (
-              <div className="col-md-4 article" key={item.url || Math.random()}>
-                <NewsItems
-                  title={item.title}
-                  description={item.description}
-                  imgUrl={
-                    item.urlToImage
-                    ? item.urlToImage
-                    : "https://images.digitalfoundry.net/cc15a4cd57510/large.jpg"
-                  }
-                  newsLink={item.url}
-                  author={item.author}
-                  time={item.publishedAt}
-                  source={item.source}
-                  isDark={isDark}
-                />
-              </div>
-            );
-          })}
-      </div>
+        <div className="row">
+          {articles.length > 0 &&
+            articles.map((item) => {
+              return (
+                <div
+                  className="col-md-4 article"
+                  key={item.url || Math.random()}
+                >
+                  <NewsItems
+                    title={item.title}
+                    description={item.description}
+                    imgUrl={
+                      item.urlToImage
+                        ? item.urlToImage
+                        : "https://www.pngkey.com/png/detail/61-615210_red-learn-more-button-please-read-me.png"
+                    }
+                    newsLink={item.url}
+                    author={item.author}
+                    time={item.publishedAt}
+                    source={item.source}
+                    isDark={isDark}
+                  />
+                </div>
+              );
+            })}
+        </div>
 
-      {/* Loading spinner at the bottom */}
-      {loading && <Spinner isDark={isDark} />}
+        {/* Loading spinner at the bottom */}
+        {loading && <Spinner isDark={isDark} />}
 
-      {/* Sentinel element for infinite scroll */}
-      <div ref={sentryRef} style={{ textAlign: "center", padding: "20px" }}>
-        {!hasNextPage && articles.length > 0 && (
-          <p className={isDark ? "text-light" : "text-dark"}>
-            No more articles to load
-          </p>
-        )}
+        {/* Sentinel element for infinite scroll */}
+        <div ref={sentryRef} style={{ textAlign: "center", padding: "20px" }}>
+          {!hasNextPage && articles.length > 0 && (
+            <p className={isDark ? "text-light" : "text-dark"}>
+              No more articles to load
+            </p>
+          )}
+        </div>
       </div>
-    </div>
-          </>
+    </>
   );
 };
 

@@ -2,17 +2,21 @@ import "./App.css";
 import { useState } from "react";
 import NavBar from "./Component/NavBar";
 import News from "./Component/News";
-// import About from "./Component/About";
-// import PrivacyPolicy from "./Component/privacyPolicy";
+import About from "./Component/About";
+import PrivacyPolicy from "./Component/privacyPolicy";
 function App() {
-  // const [tabs,setTabs]=useState(false);
-  const [mode, setmode] = useState("light");
-  const [category, setcategory] = useState({
-    cate:"General",
-    query:"everything",
+  const [tabs, setTabs] = useState({
+    home: true,
+    about: false,
+    privacy: false,
   });
-  const [rdmKeyGen,setrdmKeyGen] =useState(Math.random())
-  const apikey=process.env.REACT_APP_NEWS_API;
+  const [mode, setmode] = useState("light");
+  const [rdmKeyGen, setrdmKeyGen] = useState("General");
+  const [category, setcategory] = useState({
+    cate: "General",
+    query: "everything",
+  });
+  const apikey = process.env.REACT_APP_NEWS_API;
   const isDark = mode === "dark";
   document.body.style.backgroundColor =
     mode === "light" ? "#e2dbdbd3" : "#2e3238";
@@ -21,25 +25,49 @@ function App() {
     document.body.style.backgroundColor =
       mode === "light" ? "#2e3238" : "#e2dbdbd3";
   };
-
+  const switchtabs = ( tabName) => {
+    if (tabName === "Newzify") {
+      setTabs({ home: true, about: false, privacy: false });
+    } else if (tabName === "AboutUs") {
+      setTabs({ home: false, about: true, privacy: false });
+    } else if (tabName === "Privacy Policy") {
+      setTabs({ home: false, about: false, privacy: true });
+    } 
+    else {
+      setTabs({ home: true, about: false, privacy: false });
+    }
+  };
 
   return (
     <>
-
       <NavBar
         title="Newzify"
         isDark={isDark}
         toogleMode={toogleMode}
         setCate={setcategory}
         keyGen={setrdmKeyGen}
-        // setTabs={setTabs}
-      /> 
-    
-      <News key={rdmKeyGen} isDark={isDark} category={category} apikey={apikey} />
-    
-        {/* <About isDark={isDark} />
-        <PrivacyPolicy isDark={isDark} /> */}
-     
+        setTabs={switchtabs}
+      />
+      {
+        <div style={{ display: tabs.home ? "block" : "none" }}>
+          <News
+            key={rdmKeyGen}
+            isDark={isDark}
+            category={category}
+            apikey={apikey}
+          />
+        </div>
+      }
+      {
+        <div style={{ display: tabs.about ? "block" : "none" }}>
+          <About isDark={isDark} />
+        </div>
+      }
+      {
+        <div style={{ display: tabs.privacy ? "block" : "none" }}>
+          <PrivacyPolicy isDark={isDark} />
+        </div>
+      }
     </>
   );
 }

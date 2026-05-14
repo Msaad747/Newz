@@ -21,3 +21,36 @@ body {
 
   }
 }
+/* Accordion arrow color in dark mode */
+.dark-arrow::after {
+  filter: invert(1);
+}
+
+/* Remove ugly focus glow */
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+/* Smooth transition */
+.accordion-button,
+.accordion-item,
+.accordion-body {
+  transition: all 0.3s ease;
+}
+
+/* Optional: Dark mode border fix */
+.accordion-item {
+  border: 1px solid gray;
+}
+
+/* Optional hover effect */
+.accordion-button:hover {
+  opacity: 0.9;
+}
+
+/* Fix accordion background when opened */
+.accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
+/*  */

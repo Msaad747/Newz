@@ -1,24 +1,31 @@
 import React from "react";
 
 export default function PrivacyPolicy(props) {
- 
-
   return (
     <div
-      className={`container   mx-3 ${props.isDark ? "text-light" : "text-dark"}`}
-      style={{ fontFamily: "Times New Roman" }}
+      className={` d-flex flex-column  ${
+        props.isDark ? "text-light" : "text-dark"
+      }`}
+      style={{ fontFamily: "Times New Roman", padding: "35px" }}
     >
-      <div className="text-left mt-1 mb-2">
+      <div className="text-center mt-1 mb-1 ">
         <button
           className={`btn ${props.isDark ? "btn-outline-light" : "btn-outline-dark"} fs-4 mb-3 `}
-          style={{cursor:"default"}}
+          style={{ cursor: "default" }}
         >
           🔒 Privacy Policy
         </button>
       </div>
+      <hr />
 
-      
-      <ul style={{cursor:"default"}}>
+      <ul
+        className="text-start"
+        style={{
+          cursor: "default",
+          maxWidth: "900px",
+          width: "100%",
+        }}
+      >
         <li>
           <p>
             This website uses cookies to improve user experience and display
