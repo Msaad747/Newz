@@ -177,12 +177,13 @@ export default function NavBar(props) {
               />
               {searchbar && (
                 <>
-                  <small
+                  <label
+                    htmlFor="flexSwitchCheckDefault"
                     className={`${isDark ? "text-light" : "text-dark"}`}
                     style={{ fontSize: "12px" }}
                   >
                     Dark mode
-                  </small>
+                  </label>
                 </>
               )}
 
@@ -199,9 +200,9 @@ export default function NavBar(props) {
             {searchbar && (
               <form className="d-flex">
                 <input
-                  className={` form-control me-2  ${isDark? "bg-dark text-light border-light" : "bg-light text-dark border-success"}`}
+                  className={` form-control me-2  ${isDark ? "bg-dark text-light border-light" : "bg-light text-dark border-success"}`}
                   type="text"
-                  id={"searchInput"}
+                  id="searchInput"
                   value={searchText}
                   onChange={handleSearchChange}
                   onKeyPress={handleSearchKeyPress}
