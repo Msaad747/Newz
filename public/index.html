@@ -2,6 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Content-Security-Policy" 
+      content="default-src 'self'; 
+               script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; 
+               style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; 
+               img-src 'self' https: data:; 
+               font-src 'self' https://cdn.jsdelivr.net; 
+               connect-src 'self' https://newsapi.org https://*.newsapi.org; 
+               frame-ancestors 'none'; 
+               base-uri 'self'; 
+               form-action 'self';" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <link rel="icon" href="%PUBLIC_URL%/icon1.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />

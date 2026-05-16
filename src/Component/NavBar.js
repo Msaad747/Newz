@@ -79,7 +79,7 @@ export default function NavBar(props) {
                     props.setCate({ cate: "General" });
                     setSearchBar(false);
                   }}
-                  to="/home"
+                  to="/"
                 >
                   Home
                 </Link>
