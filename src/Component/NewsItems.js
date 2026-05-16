@@ -25,7 +25,7 @@ export default function NewsItems(props) {
         <div
           className={`card-body ${isDark ? "bg-dark text-light" : "bg-light text-dark "} `}
         >
-          <h5 className="card-title">{title ? title : null`...`}</h5>
+          <h5 className="card-title">{title ? title : "..."}</h5>
           <p className="card-text">
             {description ? description : "Click Below To Read More ..."}
           </p>

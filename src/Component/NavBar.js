@@ -1,22 +1,27 @@
 import React, { useState } from "react";
-
+import { Link, useNavigate } from "react-router-dom";
 export default function NavBar(props) {
   const [searchbar, setSearchBar] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
 
   const toGetCate = (e) => {
-    props.setCate({ cate: e.target.innerText });
+    props.setCate({ 
+      cate: e.target.innerText,
+      query: "everything"
+    });
     setSearchBar(false);
-    props.keyGen(e.target.innerText);
-    props.setTabs("Category Tabs");
+    props.keyGen(Math.random());
+    navigate("/");
   };
   const searchBarAndEverythingTab = (e) => {
     props.setCate({
-      cate: e.target.innerText,
+      cate: "Everything",
+      query: ""
     });
     setSearchBar(true);
-    props.keyGen("searchBarAndEverythingTab");
-    props.setTabs("Everything Tab");
+    props.keyGen(Math.random());
+    navigate("/");
   };
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
@@ -42,18 +47,18 @@ export default function NavBar(props) {
         className={`navbar navbar-expand-lg ${isDark ? "navbar-dark bg-dark" : "navbar-light bg-light"} fixed-top`}
       >
         <div className="container-fluid">
-          <span
+          <Link
             className="navbar-brand"
             style={{ cursor: "pointer" }}
             onClick={(e) => {
               props.setCate({ cate: "General" });
               setSearchBar(false);
               props.keyGen(Math.random());
-              props.setTabs("Newzify");
             }}
+            to="/"
           >
             {title}
-          </span>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -68,26 +73,35 @@ export default function NavBar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <span
+                <Link
                   className="nav-link"
                   style={{ cursor: "pointer" }}
                   onClick={(e) => {
-                    props.setTabs("AboutUs");
+                    props.setCate({ cate: "General" });
+                    setSearchBar(false);
                   }}
+                  to="/home"
                 >
-                  AboutUs
-                </span>
+                  Home
+                </Link>
               </li>
               <li className="nav-item">
-                <span
+                <Link
                   className="nav-link"
                   style={{ cursor: "pointer" }}
-                  onClick={(e) => {
-                    props.setTabs("Privacy Policy");
-                  }}
+                  to="/about"
+                >
+                  AboutUs
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  style={{ cursor: "pointer" }}
+                  to="/privacy_policy"
                 >
                   Privacy Policy
-                </span>
+                </Link>
               </li>
 
               <li className="nav-item dropdown" data-bs-auto-close="inside">

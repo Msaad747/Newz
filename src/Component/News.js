@@ -15,7 +15,7 @@ const News = ({ category, isDark, apikey }) => {
       try {
         let url = `https://newsapi.org/v2/${
           category.cate.toLowerCase() === "everything"
-            ? `everything?q=${category.query}&`
+            ? `everything?q=${category.query || "general"}&`
             : "top-headlines?"
         }${
           category.cate.toLowerCase() === "everything"
@@ -75,7 +75,7 @@ const News = ({ category, isDark, apikey }) => {
           <br />
           {`[ ${category.cate}\n ${
             category.cate === "Everything"
-              ? category.query
+              ? category.query 
                 ? ` About ${
                     category.query.charAt(0).toUpperCase() +
                     category.query.slice(1)
