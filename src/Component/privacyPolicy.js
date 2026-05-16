@@ -8,16 +8,16 @@ export default function PrivacyPolicy(props) {
       }`}
       style={{ fontFamily: "Times New Roman", padding: "35px", lineHeight: "1.8" }}
     >
-      <div className="text-center mt-1 mb-3">
+      <div className="text-center mt-1 " style={{marginBottom: "0px"}}>
         <button
           className={`btn ${props.isDark ? "btn-outline-light" : "btn-outline-dark"} fs-4 mb-3 `}
-          style={{ cursor: "default" }}
+          style={{ cursor: "default" , }}
         >
           🔒 Privacy Policy
         </button>
-        <p style={{ fontSize: "0.9rem", marginTop: "10px" }}>Last Updated: May 16, 2026</p>
+        <p style={{ fontSize: "0.9rem",  }}>Last Updated: May 16, 2026</p>
       </div>
-      <hr />
+      <hr  style={{    margin: "0px", marginBottom: "12px"}}/>
 
       <div
         className="text-start"
