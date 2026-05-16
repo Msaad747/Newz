@@ -52,10 +52,9 @@ export default function NavBar(props) {
             style={{ cursor: "pointer" }}
             onClick={(e) => {
               props.setCate({ cate: "General" });
-              setSearchBar(false);
-              props.keyGen(Math.random());
+              setSearchBar(false); 
             }}
-            to="/"
+            to="/home"
           >
             {title}
           </Link>
