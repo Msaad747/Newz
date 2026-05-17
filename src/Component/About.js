@@ -1,5 +1,21 @@
+/**
+ * About Component - About Us Page
+ * 
+ * Displays information about Newzify application including:
+ * - App description and mission
+ * - Team information
+ * - Features overview
+ * - Contact information
+ * - Dark/Light theme support
+ */
+
 import React from "react";
 
+/**
+ * About Component - About Page
+ * @param {Object} props - Contains isDark flag for theme
+ * @returns {JSX.Element} About page content
+ */
 export default function About(props) {
   return (
     <>

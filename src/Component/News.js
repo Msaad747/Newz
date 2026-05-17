@@ -1,14 +1,48 @@
+/**
+ * News Component - Main News Display and Fetching
+ * 
+ * Responsibilities:
+ * - Fetches news articles from NewsAPI based on category
+ * - Displays articles in a responsive grid layout
+ * - Implements infinite scroll to load more articles
+ * - Shows loading spinner during data fetching
+ * - Handles pagination and article filtering
+ * 
+ * Features:
+ * - Dynamic category filtering
+ * - Infinite scroll pagination
+ * - Responsive layout with Bootstrap
+ * - Dark/Light theme support
+ * - Error handling for API failures
+ */
+
 import React, { useState, useEffect, useCallback } from "react";
 import useInfiniteScroll from "react-infinite-scroll-hook";
 import NewsItems from "./NewsItems";
 import Spinner from "./Spinner";
 
-const News = ({ category, isDark, apikey }) => {
+/**
+ * News Component - Fetches and displays news articles
+ * @param {Object} props - Component props
+ * @param {Object} props.category - Selected news category and query
+ * @param {boolean} props.isDark - Dark mode flag
+ * @param {string} props.apikey - NewsAPI.org API key
+ * @param {boolean} props.showEmpty - Flag to show empty page for invalid URL combinations
+ * @param {string} props.errorMessage - Error message to display when URL is invalid
+ * @returns {JSX.Element} News grid with infinite scroll or empty state
+ */
+const News = ({ category, isDark, apikey, showEmpty, errorMessage }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageNo, setPageNo] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
 
+  /**
+   * Fetches news articles from NewsAPI
+   * Constructs appropriate API URL based on category and pagination
+   * Handles both category-based (top-headlines) and search-based (everything) queries
+   * @param {number} page - Page number for pagination
+   */
   const fetchNews = useCallback(
     async (page) => {
       setLoading(true);
@@ -47,14 +81,21 @@ const News = ({ category, isDark, apikey }) => {
     [category, apikey],
   );
 
-  // Initial fetch on component mount or category change
+  /**
+   * Effect Hook - Fetches news when category or query changes
+   * Resets pagination and articles list before fetching new data
+   */
   useEffect(() => {
     setPageNo(1);
     setArticles([]);
     fetchNews(1);
   }, [category.cate, category.query, fetchNews]);
 
-  // Infinite scroll hook
+  /**
+   * Infinite Scroll Implementation
+   * Automatically loads next page when user scrolls to bottom
+   * Disabled when no more pages available or data is loading
+   */
   const [sentryRef] = useInfiniteScroll({
     loading,
     hasNextPage,
@@ -66,28 +107,39 @@ const News = ({ category, isDark, apikey }) => {
 
   return (
     <>
-      <div className="container">
-        <h1
-          className={`text-center ${isDark ? " text-light" : " text-dark"}`}
-          style={{ fontFamily: "Times NEw Roman" }}
-        >
-          Newify {`${category.cate === "Everything" ? "" : "- Top-Headlines"}`}
-          <br />
-          {`[ ${category.cate}\n ${
-            category.cate === "Everything"
-              ? category.query 
-                ? ` About ${
-                    category.query.charAt(0).toUpperCase() +
-                    category.query.slice(1)
-                  }`
+      {/* Show empty page if invalid URL combination detected */}
+      {showEmpty ? (
+        <div className="container" style={{ paddingTop: "100px", textAlign: "center" }}>
+          <h2 className={isDark ? "text-light" : "text-dark"}>
+            No Results
+          </h2>
+          <p className={isDark ? "text-light" : "text-dark"}>
+            {errorMessage || "Invalid parameters. Please check your URL."}
+          </p>
+        </div>
+      ) : (
+        <div className="container">
+          <h1
+            className={`text-center ${isDark ? " text-light" : " text-dark"}`}
+            style={{ fontFamily: "Times NEw Roman" }}
+          >
+            Newify {`${category.cate === "Everything" ? "" : "- Top-Headlines"}`}
+            <br />
+            {`[ ${category.cate}\n ${
+              category.cate === "Everything"
+                ? category.query 
+                  ? ` About ${
+                      category.query.charAt(0).toUpperCase() +
+                      category.query.slice(1)
+                    }`
+                  : ""
                 : ""
-              : ""
-          } ]`}
-        </h1>
+            } ]`}
+          </h1>
 
-        <hr
-          className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
-        />
+          <hr
+            className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
+          />
         <div className="row">
           {articles.length > 0 &&
             articles.map((item) => {
@@ -115,10 +167,10 @@ const News = ({ category, isDark, apikey }) => {
             })}
         </div>
 
-        {/* Loading spinner at the bottom */}
+        {/* Display loading spinner while fetching data */}
         {loading && <Spinner isDark={isDark} />}
 
-        {/* Sentinel element for infinite scroll */}
+        {/* Sentinel element for infinite scroll - triggers onLoadMore when in view */}
         <div ref={sentryRef} style={{ textAlign: "center", padding: "20px" }}>
           {!hasNextPage && articles.length > 0 && (
             <p className={isDark ? "text-light" : "text-dark"}>
@@ -126,7 +178,8 @@ const News = ({ category, isDark, apikey }) => {
             </p>
           )}
         </div>
-      </div>
+        </div>
+      )}
     </>
   );
 };

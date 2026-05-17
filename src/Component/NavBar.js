@@ -1,19 +1,73 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+/**
+ * NavBar Component - Navigation and Search Interface
+ * 
+ * Provides:
+ * - Navigation links (Home, About, Privacy Policy)
+ * - News category dropdown selector
+ * - Dynamic search functionality with Everything tab
+ * - Dark/Light mode toggle
+ * - URL-based state management for categories and searches
+ * 
+ * Props:
+ * - title: App title (Newzify)
+ * - isDark: Boolean flag for dark mode
+ * - toogleMode: Function to switch between light/dark theme
+ * - setCate: Function to update news category
+ * - keyGen: Function to trigger component re-renders
+ */
+
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+
+/**
+ * Navigation Bar Component
+ * @param {Object} props - Component props containing theme and navigation handlers
+ * @returns {JSX.Element} Navigation bar with search and theme toggle
+ */
 export default function NavBar(props) {
   const [searchbar, setSearchBar] = useState(false);
   const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
+  /**
+   * Effect Hook - Show search bar when URL has query parameter
+   * Displays search input and pre-fills it with the query value from URL
+   */
+  useEffect(() => {
+    const queryParam = searchParams.get("q");
+    const categoryParam = searchParams.get("category");
+    if (queryParam || categoryParam === "everything") {
+      setSearchBar(true);
+      setSearchText(queryParam);
+    }
+    if(props.showEmpty) {
+      setSearchBar(false);
+      setSearchText("");
+    }
+    
+  }, [searchParams,props.showEmpty]);
+
+  /**
+   * Handles category selection from dropdown
+   * Updates category state and navigates to URL with category parameter
+   * @param {Event} e - Click event from category button
+   */
   const toGetCate = (e) => {
+    const category = e.target.innerText;
     props.setCate({ 
-      cate: e.target.innerText,
-      query: "everything"
+      cate: category,
+      query: ""
     });
     setSearchBar(false);
     props.keyGen(Math.random());
-    navigate("/");
+    navigate(`/?category=${category.toLowerCase()}`);
   };
+  /**
+   * Handles Everything tab click
+   * Shows search bar and sets category to 'Everything' for broad searches
+   * @param {Event} e - Click event from Everything button
+   */
   const searchBarAndEverythingTab = (e) => {
     props.setCate({
       cate: "Everything",
@@ -21,17 +75,30 @@ export default function NavBar(props) {
     });
     setSearchBar(true);
     props.keyGen(Math.random());
-    navigate("/");
+    navigate("/?category=everything");
   };
+  /**
+   * Updates search text as user types
+   * @param {Event} e - Change event from search input
+   */
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
   };
+  /**
+   * Triggers search when user presses Enter key
+   * @param {Event} e - Keyboard event from search input
+   */
   const handleSearchKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       handleSearchClick(e);
     }
   };
+  /**
+   * Performs search and updates URL with search query
+   * Sets category to 'Everything' and adds query parameter to URL
+   * @param {Event} e - Click event from search button
+   */
   const handleSearchClick = (e) => {
     e.preventDefault();
     props.setCate({
@@ -39,6 +106,7 @@ export default function NavBar(props) {
       query: searchText,
     });
     props.keyGen(searchText);
+    navigate(`/?category=everything&q=${searchText}`);
   };
   const { title, isDark, toogleMode } = props;
   return (
@@ -52,7 +120,8 @@ export default function NavBar(props) {
             style={{ cursor: "pointer" }}
             onClick={(e) => {
               props.setCate({ cate: "General" });
-              setSearchBar(false); 
+              setSearchBar(false);
+              navigate("/");
             }}
             to="/"
           >
@@ -78,6 +147,7 @@ export default function NavBar(props) {
                   onClick={(e) => {
                     props.setCate({ cate: "General" });
                     setSearchBar(false);
+                    navigate("/");
                   }}
                   to="/"
                 >

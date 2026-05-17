@@ -1,5 +1,17 @@
+/**
+ * Spinner Component - Loading Indicator
+ * 
+ * Displays a centered loading spinner while data is being fetched
+ * Adapts appearance based on theme (dark/light mode)
+ */
+
 import React from "react";
 
+/**
+ * Spinner Component - Loading Indicator
+ * @param {Object} props - Contains isDark flag for theme styling
+ * @returns {JSX.Element} Bootstrap spinner component
+ */
 export default function Spinner(props) {
   const { isDark } = props;
   return (

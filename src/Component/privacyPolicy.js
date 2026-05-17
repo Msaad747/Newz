@@ -1,5 +1,22 @@
+/**
+ * PrivacyPolicy Component - Privacy Policy Page
+ * 
+ * Displays comprehensive privacy policy including:
+ * - Data collection practices
+ * - User rights and privacy protection
+ * - Cookie usage
+ * - Third-party services
+ * - Contact information for privacy concerns
+ * - Dark/Light theme support
+ */
+
 import React from "react";
 
+/**
+ * PrivacyPolicy Component - Privacy Policy Page
+ * @param {Object} props - Contains isDark flag for theme
+ * @returns {JSX.Element} Privacy policy content
+ */
 export default function PrivacyPolicy(props) {
   return (
     <div

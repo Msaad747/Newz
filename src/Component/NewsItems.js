@@ -1,5 +1,31 @@
+/**
+ * NewsItems Component - Individual News Article Card
+ * 
+ * Displays a single news article with:
+ * - Thumbnail image
+ * - Article title and description
+ * - Author and publication date
+ * - Source badge
+ * - Link to full article
+ * 
+ * Props:
+ * - title: Article headline
+ * - description: Article summary
+ * - imgUrl: Thumbnail image URL
+ * - newsLink: URL to full article
+ * - author: Author name
+ * - time: Publication timestamp
+ * - source: News source information
+ * - isDark: Dark mode flag for styling
+ */
+
 import React from "react";
 
+/**
+ * NewsItems Component - Article Card Display
+ * @param {Object} props - Article data and theme props
+ * @returns {JSX.Element} Formatted news article card
+ */
 export default function NewsItems(props) {
   const { title, description, imgUrl, newsLink, isDark, author, time, source } =
     props;

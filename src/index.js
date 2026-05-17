@@ -1,3 +1,12 @@
+/**
+ * Entry Point for the News App
+ * 
+ * This file initializes the React application and wraps it with:
+ * - BrowserRouter for client-side routing
+ * - StrictMode for development warnings
+ * - React Performance Monitoring (reportWebVitals)
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
