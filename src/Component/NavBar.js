@@ -1,13 +1,13 @@
 /**
  * NavBar Component - Navigation and Search Interface
- * 
+ *
  * Provides:
  * - Navigation links (Home, About, Privacy Policy)
  * - News category dropdown selector
  * - Dynamic search functionality with Everything tab
  * - Dark/Light mode toggle
  * - URL-based state management for categories and searches
- * 
+ *
  * Props:
  * - title: App title (Newzify)
  * - isDark: Boolean flag for dark mode
@@ -41,12 +41,11 @@ export default function NavBar(props) {
       setSearchBar(true);
       setSearchText(queryParam);
     }
-    if(props.showEmpty) {
+    if (props.showEmpty) {
       setSearchBar(false);
       setSearchText("");
     }
-    
-  }, [searchParams,props.showEmpty]);
+  }, [searchParams, props.showEmpty]);
 
   /**
    * Handles category selection from dropdown
@@ -55,9 +54,9 @@ export default function NavBar(props) {
    */
   const toGetCate = (e) => {
     const category = e.target.innerText;
-    props.setCate({ 
+    props.setCate({
       cate: category,
-      query: ""
+      query: "",
     });
     setSearchBar(false);
     props.keyGen(Math.random());
@@ -71,7 +70,7 @@ export default function NavBar(props) {
   const searchBarAndEverythingTab = (e) => {
     props.setCate({
       cate: "Everything",
-      query: ""
+      query: "",
     });
     setSearchBar(true);
     props.keyGen(Math.random());

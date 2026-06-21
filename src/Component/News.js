@@ -121,7 +121,7 @@ const News = ({ category, isDark, apikey, showEmpty, errorMessage }) => {
         <div className="container">
           <h1
             className={`text-center ${isDark ? " text-light" : " text-dark"}`}
-            style={{ fontFamily: "Times NEw Roman" }}
+            style={{ fontFamily: "Times New Roman" }}
           >
             Newify {`${category.cate === "Everything" ? "" : "- Top-Headlines"}`}
             <br />

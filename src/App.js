@@ -121,7 +121,7 @@ function App() {
         showEmpty={showEmpty}
       />
       <Routes>
-        <Route
+        <Route exact
           path="/"
           element={
             <News
@@ -134,8 +134,9 @@ function App() {
             />
           }
         />
-        <Route path="/about" element={<About isDark={isDark} />} />
+        <Route exact path="/about" element={<About isDark={isDark} />} />
         <Route
+          exact
           path="/privacy_policy"
           element={<PrivacyPolicy isDark={isDark} />}
         />
