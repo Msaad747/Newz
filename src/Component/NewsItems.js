@@ -40,16 +40,16 @@ export default function NewsItems(props) {
           </span>
         </div>
       <div
-        className={`articles card mb-3 ${isDark ? "border-light" : "border-dark"}`}
+        className={`articles card mb-3 ${isDark ? "border-light bg-dark" : "border-dark bg-light"} rounded-4`}
       >
         <img
           src={imgUrl}
-          className="card-img-top"
+          className="card-img-top  "
           alt="..."
           style={{ height: "auto" }}
         />
         <div
-          className={`card-body ${isDark ? "bg-dark text-light" : "bg-light text-dark "} `}
+          className={`card-body ${isDark ? "bg-dark text-light" : "bg-light text-dark "} rounded-4`}
         >
           <h5 className="card-title">{title ? title : "..."}</h5>
           <p className="card-text">

@@ -53,4 +53,32 @@ body {
 .accordion-button:not(.collapsed) {
   box-shadow: none;
 }
-/*  */
+
+
+.news-masonry {
+  column-count: 3;
+  column-gap: 20px;
+}
+
+.article {
+  break-inside: avoid;
+  margin-bottom: 20px;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .news-masonry {
+    column-count: 2;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .news-masonry {
+    column-count: 1;
+  }
+}
+.rounded-4{
+  border-radius: 20px;
+  overflow: hidden;
+}
