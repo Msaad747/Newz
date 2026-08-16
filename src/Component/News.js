@@ -140,12 +140,12 @@ const News = ({ category, isDark, apikey, showEmpty, errorMessage }) => {
           <hr
             className={`${isDark ? "bg-light text-dark" : "bg-dark text-light"}  `}
           />
-        <div className="news-masonry">
+        <div className="row">
           {articles.length > 0 &&
             articles.map((item) => {
               return (
                 <div
-                  className="article"
+                  className="col-md-4 article"
                   key={item.url || Math.random()}
                 >
                   <NewsItems
